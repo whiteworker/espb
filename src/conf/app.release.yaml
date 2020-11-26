@@ -1,0 +1,108 @@
+runmode: 'release'
+casbin_model_conf : "conf/model.conf"
+www: ""
+swagger : "docs/swagger"
+store: "gorm"
+allow_init_menu: true
+enable_casbin: true
+web:
+  host: ''
+  port: 8888
+  readtimeout : 6s
+  writetimeout : 6s
+  pagesize : 20
+  jwtsecret : 23347$040412
+  logsavepath : logs/
+  logsavename : log
+  logfileext : log
+  timeformat : 20060102
+  # runtimerootpath : runtime/
+  # imageprefixurl : http://localhost:8000
+  # imagesavepath : upload/images/
+  # imagemaxsize : 5
+  # imageallowexts : .jpg,.jpeg,.png
+  shutdown_timeout: '30s'
+log:
+  level: '5'
+  format: text
+  output: stdout
+  output_file: data/ginadmin.log
+  enable_hook: ''
+  hook: gorm
+  hook_max_thread: '1'
+  hook_max_buffer: '512'
+log_gorm_hook:
+  db_type: sqlite3
+  max_lifetime: '7200'
+  max_open_conns: '1'
+  max_idle_conns: '1'
+  table: g_logger
+monitor:
+  enable: ''
+  addr: 'localhost:16060'
+  config_dir: ''
+root:
+  user_name: root
+  password: abc-123
+  real_name: 超级管理员
+jwt_auth:
+  signing_method: HS512
+  signing_key: GINADMIN
+  expired: '7200'
+  store: file
+  file_path: data/jwt_auth.db
+  redis_db: '10'
+  redis_prefix: auth_
+  enable: true    
+captcha:
+  store: memory
+  length: '4'
+  width: '300'
+  height: '120'
+  redis_db: '10'
+  redis_prefix: captcha_
+rate_limiter:
+  enable: ''
+  count: '300'
+  redis_db: '10'
+cors:
+  enable: '1'
+  allow_origins:
+    - '*'
+  allow_methods:
+    - GET
+    - POST
+    - PUT
+    - DELETE
+    - PATCH
+  allow_headers:
+    - ''
+  allow_credentials: '1'
+  max_age: '7200'
+redis:
+  addr: 'localhost:6379'
+  password: ''
+gorm:
+  debug: 'true'
+  db_type: 'mysql'
+  max_lifetime: '7200'
+  max_open_conns: '150'
+  max_idle_conns: '50'
+  table_prefix: 'g_'
+  enable_auto_migrate: false
+mysql:
+  host: 'localhost'
+  port: '3306'
+  user: 'root'
+  password: '1234'
+  db_name: 'ginadmin'
+  parameters: 'charset=utf8mb4&parseTime=True&loc=Local&allowNativePasswords=true'  
+casbin:
+  enable: true
+  debug: false
+  model: "conf/model.conf"
+  auto_load: false
+  auto_load_internal: 10  
+menu:
+  enable: true
+  data: ""   
