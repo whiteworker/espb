@@ -18,7 +18,7 @@ service AI {
   };
 }
 message MachineAnswerRequest {
-  string Question = 1;
+  string Question = 1 [(gogoproto.moretags) = 'example:"你今天吃饭了吗?"'];
 }
 message MachineAnswerResponse {
   string Answer = 1;
