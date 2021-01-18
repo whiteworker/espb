@@ -10,9 +10,9 @@ option go_package = "test";
 option (gogoproto.goproto_getters_all) = false;
 
 service test {
-  rpc Answer (MachineAnswerRequest) returns (MachineAnswerResponse){
+  rpc TestAnswer (MachineAnswerRequest) returns (MachineAnswerResponse){
     option (google.api.http) = {
-      post: "/test/ask"
+      post: "/test/testask"
       body: "*"
   };
   };
