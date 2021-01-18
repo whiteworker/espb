@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+package test.service.v1;
+
+option go_package = "test";
+option (gogoproto.goproto_getters_all) = false;
+
+service test {
+  rpc Answer (MachineAnswerRequest) returns (MachineAnswerResponse){
+    option (google.api.http) = {
+      post: "/test/ask"
+      body: "*"
+  };
+  };
+}
+message MachineAnswerRequest {
+  string Question = 1;
+}
+message MachineAnswerResponse {
+  string Answer = 1;
+}
