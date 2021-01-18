@@ -6,6 +6,6 @@ cd ../
 del *.bat && del *.json
 set command=swagger mixin 
 for  /r  %%i  in  (*.json)  do call set command=%%command%% %%i
-set command=%command% -o swagger.json
+set command=%command% -o ../../pkg/middleware/swagger/static/swagger.json
 %command%
 cd pb
