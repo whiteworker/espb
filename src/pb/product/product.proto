@@ -1,10 +1,9 @@
 syntax = "proto3";
 
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
-import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
-import "es-productapi/pkg/common/paginate";
+import "paginate/paginate.proto";
 
 package product.service.v1;
 
@@ -46,9 +45,9 @@ message ListProductsRequest {
   int64 product_id = 1;
   string product_name = 2;
   string product_code = 3;
-  paginate.PageOptions PageOptions=4;
+  common.paginate.PageOptions PageOptions=4;
 }
 message ListProductsResponse { 
   repeated Product product=1;
-  paginate.PageResult PageResult=2;
+  common.paginate.PageResult PageResult=2;
 }
