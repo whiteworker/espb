@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "es-productapi/pkg/common/paginate";
+
+package product.service.v1;
+
+option go_package = "product";
+option (gogoproto.goproto_getters_all) = false;
+
+service ProductService {
+  rpc ListProducts(ListProductsRequest) returns (ListProductsResponse) {
+    option (google.api.http) = {
+      post : "/api/product/listproducts"
+      body : "*"
+    };
+  };
+}
+message Product {
+    int64 product_id = 1;  //产品id
+	string product_code = 2;//产品代码
+	string product_name = 3 ; //产品名称
+	bool enable = 4; //是否启用
+	string description =5; //描述
+	bool isdisplay =6;//是否展示
+	google.protobuf.Timestamp display_from=7;  //展示区间(起)
+	google.protobuf.Timestamp display_to=8  ; //展示区间(止)
+	google.protobuf.Timestamp sales_from=9 ; //销售区间(起)
+	google.protobuf.Timestamp sales_to=10;  //销售区间(止)
+	bool is_draft =11   ;  //是否草稿状态
+	string created_by=12;    //创建人
+	google.protobuf.Timestamp created_date=13;  //创建日期
+	string modified_by =14;  //更新人
+	google.protobuf.Timestamp modified_date =15; //更细日期
+	ProductType product_type=16; //产品类型
+}
+enum ProductType {
+	MOBILE = 0;//手机
+	PC = 1;//电脑
+	Games = 2;//电子游戏机
+  }
+message ListProductsRequest {
+  int64 product_id = 1;
+  string product_name = 2;
+  string product_code = 3;
+  paginate.PageOptions PageOptions=4;
+}
+message ListProductsResponse { 
+  repeated Product product=1;
+  paginate.PageResult PageResult=2;
+}
